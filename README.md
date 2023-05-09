@@ -3,8 +3,8 @@
 
 ## Окружение: 
 1. [Mardown](../Environment/Markdown.md)
-2. [Bach](../Environment/Bash.md)
-3. [Git](../Environment/Git.md)
+2. [Bash](/Environment/Bash.md)
+3. [Git](/Environment/Git.md)
 4. [Модули: CommonJS, ES6-modules]()
 5. [Npm]()
 6. [Babel]()
