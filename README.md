@@ -2,12 +2,13 @@
 Краткое обяснение с примерами кода, поможет быстро вспомнить ~~то, что когда-то знал~~ :)
 
 ## Окружение: 
-1. [Mardown]()
-2. [Git]()
-3. [Модули: CommonJS, ES6-modules]()
-4. [Npm]()
-5. [Babel]()
-6. [Webpack]()
+1. [Mardown](../Environment/Markdown.md)
+2. [Bach](../Environment/Bash.md)
+3. [Git](../Environment/Git.md)
+4. [Модули: CommonJS, ES6-modules]()
+5. [Npm]()
+6. [Babel]()
+7. [Webpack]()
 
 ## Javascript: 
 1. [Интересные моменты]()
