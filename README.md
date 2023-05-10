@@ -2,7 +2,7 @@
 Краткое обяснение с примерами кода, поможет быстро вспомнить ~~то, что когда-то знал~~ :)
 
 ## Окружение: 
-1. [Mardown](../Environment/Markdown.md)
+1. [Markdown](/Environment/Markdown.md)
 2. [Bash](/Environment/Bash.md)
 3. [Git](/Environment/Git.md)
 4. [Модули: CommonJS, ES6-modules]()
