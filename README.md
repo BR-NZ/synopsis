@@ -13,7 +13,7 @@
 ## Javascript: 
 1. [Интересные моменты](/JS/Commons.md)
 2. [Функции: окружение и контекст выполнения](/JS/Functions%3A%20lexical%20environment%2C%20execution%20context.md)
-3. [Фунции-конструктуры, классы, наследование и прототипы](/JS/)
+3. [Фунции-конструктуры, классы, наследование и прототипы](/JS/Classes,%20Func-constructors,%20Prototype.md)
 4. [DOM: манипуляции](/JS/)
 5. [Events: виды, создание, настройка и удаление](/JS/)
 6. [Асинхронное выполнение: Promise, Promise API](/JS/)
