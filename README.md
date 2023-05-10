@@ -7,7 +7,7 @@
 3. [Git](/Environment/Git.md)
 4. [Модули: CommonJS, ES6-modules](/Environment/Modules%20(ES6,%20CommonJS,%20Dynamic).md)
 5. [Npm](/Environment/Npm.md)
-6. [Babel]()
+6. [Babel](/Environment/Babel.md)
 7. [Webpack](/Environment/Webpack.md)
 
 ## Javascript: 
