@@ -8,7 +8,7 @@ __Важно:__ по данным заметкам не удастся осво�
 <br>
 
 ## Окружение
-1. [Markdown](/Environment/Markdown.md)
+1. [Markdown: краткие правила оформления](/Environment/Markdown:%20краткие%20правила%20оформления.md)
 2. [Bash](/Environment/Bash.md)
 3. [Git](/Environment/Git.md)
 4. [Модули: CommonJS, ES6-modules](/Environment/Modules%20(ES6,%20CommonJS,%20Dynamic).md)
