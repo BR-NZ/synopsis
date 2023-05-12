@@ -4,6 +4,8 @@ __Важно:__ по данным заметкам не удастся осво�
 
 ![GitHub repo directory count](https://img.shields.io/github/directory-file-count/BR-NZ/synopsis?label=%D0%A0%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2&type=dir)
 
+<br>
+
 ## Окружение
 1. [Markdown](/Environment/Markdown.md)
 2. [Bash](/Environment/Bash.md)
@@ -12,6 +14,8 @@ __Важно:__ по данным заметкам не удастся осво�
 5. [Npm](/Environment/Npm.md)
 6. [Babel](/Environment/Babel.md)
 7. [Webpack](/Environment/Webpack.md)
+
+<br>
 
 ## Javascript
 1. [Интересные моменты](/JS/Commons.md)
@@ -22,6 +26,8 @@ __Важно:__ по данным заметкам не удастся осво�
 6. [Асинхронное выполнение: Promise, Promise API](/JS/)
 7. [Сетевые запросы: AJAX, Fetch, JSON](/JS/)
 8. [Event Loop: цикл событий при исполнении кода](/JS/)
+
+<br>
 
 ## React
 ### Основы: 
