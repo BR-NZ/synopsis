@@ -1,5 +1,8 @@
 # Сводка ключевых тем разработки
 Краткое обяснение с примерами кода, поможет быстро вспомнить ~~то, что когда-то знал~~ :)
+__Важно:__ по данным заметкам не удастся освоить тему, только вспомнить ее тонкости и рабочие моменты с примерами.
+
+![GitHub repo directory count](https://img.shields.io/github/directory-file-count/BR-NZ/synopsis?label=%D0%A0%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2&type=dir)
 
 ## Окружение: 
 1. [Markdown](/Environment/Markdown.md)
