@@ -24,6 +24,7 @@
 <img width="650" title="Event Loop" alt="Event Loop" src="https://github.com/BR-NZ/synopsis/assets/24506129/f6ec25ec-25a2-407e-ae7e-99f79761f18f">
 
 <br>
+<br>
 
 * `Callstack (стэк вызовов)` - как видно из схемы, это единственное место из которого задачи идут на исполнение, задачи в нем выполняются по принципу стэка LIFO (то есть выполняются самые свежие, старые ждут).
 * `Event Loop (цикл событий)` - это тот самый барабан, который решает какие задачи и из какой очереди запустить в `Callstack` к выполнению.
@@ -33,6 +34,7 @@
     
 <img width="650" title="Event Loop" alt="Event Loop" src="https://github.com/BR-NZ/synopsis/assets/24506129/450730cd-7ba3-42e2-a1ba-ae205e287373">
 
+<br>
 <br>
   
 ## Алгоритм
