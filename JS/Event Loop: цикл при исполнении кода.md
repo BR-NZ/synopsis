@@ -2,7 +2,7 @@
 `Event Loop` - это специальный механизм на уровне js-движка, который координирует работу трёх сущностей: `Call Stack` (стэк вызовов), `Web API` (API, предоставляемый браузером), `Callback Queue` (очередь колбэков).
 Это бесконечная «карусель», которая собирает задачи __из 3 очередей__: `макро` и `микро задач`.
 
-<img width="650" title="Event Loop" alt="Event Loop" src="https://github.com/BR-NZ/synopsis/assets/24506129/f6ec25ec-25a2-407e-ae7e-99f79761f18f"
+<img width="650" title="Event Loop" alt="Event Loop" src="https://github.com/BR-NZ/synopsis/assets/24506129/f6ec25ec-25a2-407e-ae7e-99f79761f18f">
 
 ## Последовательность задач
 Задачи выполняются в следующей последовательности:
