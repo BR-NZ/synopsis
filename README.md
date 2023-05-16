@@ -5,7 +5,7 @@
 
 <br>
 
-![Версия документа](https://img.shields.io/badge/%D0%92%D0%B5%D1%80%D1%81%D0%B8%D1%8F-0.5-brightgreen)
+![Версия документа](https://img.shields.io/badge/%D0%92%D0%B5%D1%80%D1%81%D0%B8%D1%8F-0.72-brightgreen)
 ![GitHub repo directory count](https://img.shields.io/github/directory-file-count/BR-NZ/synopsis?label=%D0%A0%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2&type=dir)
 
 <br>
@@ -37,7 +37,7 @@
 
 ## React
 ### Основы: 
-1. [Интересные моменты](/React/)
+1. [Интересные моменты](/React/React%3A%20интересные%20моменты%2C%20установка.md)
 2. [Стилизация в React](/React/)
 3. [Методы жизненного цикла (Class Components)](/React/)
 4. [Композиция компонентов (дополнение)](/React/)
