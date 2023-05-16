@@ -8,7 +8,7 @@
 * `Webpack` – отвечает за сборку модулей в банлд, живую перезагрузку на сервере.
 * `Babel` – минимизирует код, конвертирует код JS/JSX в старый стандарт JS с помощью плагина plugin-transform-react-jsx, он включен в пресет @babel/preset-react.
 
-| __JSX (with Babel)__ | __JS (with React)__ | __Output (virtual-DOM)__ | __Output (DOM)__ |
+| __JSX (by Babel)__ | __JS (by React)__ | __Output (virtual-DOM)__ | __Output (DOM)__ |
 |------------------|-----------------|----------------------|--------------|
 | `<h1>Hello!</h1>`	| `React.createElement(‘h1’, {className: ‘class2..’}, ‘Hello!’)` | `{ type: ‘h1’, props: {className: ‘class2’ children: ‘Hello!’} }` | `<h1>Hello!</h1>` |
 
