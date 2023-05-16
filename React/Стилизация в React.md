@@ -55,20 +55,51 @@ import styled from 'styled-components'
 Используем внутри модуля компонента:  
 ```javascript
 const Button = styled.a`
-  обычный CSS код...
+  // обычный CSS код...
+  font-size: 12px;
   
-  // или можно использовать условие внутри стиля
-  ${props => props.$primary && css`
-    background: white;
-    color: black;
-  `}
+  // или можно использовать условие внутри стиля (по значению пропса)
+  color: ${props => props.disabled ? 'grey' : 'black'}
+  
+  // работают даже вложенность и псевдо-элементы
+  ::before {
+    display: none
+  }
 `
+```
+
+Его можно использовать как обычный компонент:  
+```javascript
+const someComp = () => {
+  return (
+    <Button> Привет! </Button>
+  )
+}
+```
+
+Если мы хотим переиспользовать (модифицировать) стили одного элемента в другом:  
+```javascript
+const BigButton = styled(Button)`
+  font-size: 40px;
+  ...накатываем поверх стили
+`
+```
+
+Чтобы переназначить элементу `html-тэг` в DOM-дереве:  
+```javascript
+const someComp = () => {
+  return (
+    // этот компонент отрендерится как ссылка
+    <BigButton as = "a"> Привет! </BigButton>
+  )
+}
 ```
 
 Принцип работы:  
 * `styled.a` - означает что элемент попадет в DOM-дерево в виде `<a>-тега`;
 * ` CSS-код... ` - код стилей помещается сразу после внутри бэк-тиков;
 * Чтобы назначить эти стили готовому DOM-элементу - библиотека присвоит ему класс с сгенерированным именем;
+* `Вендорные префиксы` ставятся автоматически в сгенерированном CSS;
 
 <br>
 
@@ -107,4 +138,3 @@ const someComp = () => {
 1.  [ReactStrap](https://reactstrap.github.io/?path=/story/home-installation--page)
 2.  [Ant Design](https://ant.design/)
 3.  [Material Design MUI](https://mui.com/)
-4.  []()
