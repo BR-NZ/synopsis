@@ -23,8 +23,13 @@ import { Transition, CSSTransition, SwitchTransition, TransitionGroup } from 're
 
 <img title="Изменение in и состояния" alt="Изменение in и состояния" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/11c5e825-10f7-45b0-b871-4015145c4b47">
 
+
+## Они вызывают 6 событий:
 <img title="Изменение in и события" alt="Изменение in и события" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/de52d31b-623c-4d53-ab23-1fe316a3e30d">
 
+Когда пропс-`in` переходит:  
+1.  Из `true` в `false`, он выдает по порядку 3 события: `onEnter`, `onEntering`, `onEntered`.
+2.  Из `false` в `true`, он выдает по порядку 3 события: `onExit`, `onExiting`, `onExited`.
 <br>
 
 ## Составляющие
