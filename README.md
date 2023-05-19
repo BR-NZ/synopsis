@@ -41,6 +41,8 @@
 23. [React.PureComponent (мемоизация рендера от пропсов и состояния клас-компонента)](/React/React.PureComponent%20(мемоизация%20рендера%20от%20пропсов%20и%20состояния%20клас-компонента).md)
 ### Маршрутизация:
 24. [Маршрутизация: React Router v5 & v6](/React/Router/React%20Router%3A%20v5%2C%20v6.md)
+### Библиотеки:
+25. [Анимации: React Transition Group, Motion](/React/Libs/Анимации%3A%20React%20Transition%20Group%2C%20Motion.md)
 
 <br>
 
