@@ -4,7 +4,11 @@ __`React-transition-group`__ - эта библиотека не содержит
 
 ## Установка в проект:
 ```
+// добавляем прод-зависимость
 npm i react-transition-group
+
+// импортируем в модуль
+import { Transition, CSSTransition, SwitchTransition, TransitionGroup } from 'react-transition-group'
 ```
 
 ## Составляющие
