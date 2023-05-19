@@ -16,12 +16,14 @@ import { Transition, CSSTransition, SwitchTransition, TransitionGroup } from 're
 <br>
 
 ## Существует 4 основных состояния `state`:
-* entering
-* entered
-* exiting
-* exited
+* entering (процесс вхождения `duration`s)
+* entered (вошел)
+* exiting (процесс выхода `duration`s)
+* exited (вышел)
 
-<img title="Изменение состояния" alt="Изменение состояния" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/de52d31b-623c-4d53-ab23-1fe316a3e30d">
+<img title="Изменение in и состояния" alt="Изменение in и состояния" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/11c5e825-10f7-45b0-b871-4015145c4b47">
+
+<img title="Изменение in и события" alt="Изменение in и события" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/de52d31b-623c-4d53-ab23-1fe316a3e30d">
 
 <br>
 
