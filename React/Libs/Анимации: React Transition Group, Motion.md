@@ -109,7 +109,7 @@ timeout={{
 2. Воспроизводят переданные им стили в разных состояниях компонента;
 3. Предоставляют свои события этого процесса и дают возможность на них реагировать в колбек-функциях;
 
-__В чем разница:__  
+#### В чем разница:
 * <Transition> будет задавать компоненту разные `inline-стили` под каждое состояние;
 * <CSSTransition> будет просто брать заготовленные `css-классы` и задавать компоненту под каждое состояние свой;
 
@@ -118,9 +118,9 @@ __В чем разница:__
 ### `<Transition>` (инлайн-стили перехода)
 Это базовый компонент, который не использует никаких CSS-классов проекта, вместо этого он задает inline-стили прямо в коде компонента.
 
-Внутри себя содержит `рендер-функцию`, которая получает текущий `state` и на основе него должна __конфигурировать отображаемый компонен особым образом__, а после вернуть его.
-  
-Наглядный пример применения:  
+Внутри себя содержит `рендер-функцию`, которая получает текущий `state` и на основе него должна __конфигурировать отображаемый компонен особым образом__, а после вернуть его.  
+
+#### Наглядный пример применения:  
 ```javascript
 const duration = 300;
 
@@ -160,7 +160,7 @@ const someComp = () => {
 }
 ```
 
-__Пропсы:__  
+#### Пропсы дополнительные:
 * `nodeRef` - ссылка на DOM-элемент, который "нуждается" в переходе;
 * `mountOnEnter` - по умолчанию отображаемый компонент монтируется в DOM вместе с родительским `<Transition>`. Для того, чтобы монтировать компонент как-бы `"лениво"` при первом `in={true}`, следует установить `mountOnEnter`. После первого вхождения `in={true}`, компонент так и останется в DOM, если не передать пропс `unmountOnExit`;
 * `unmountOnExit` - по умолчанию дочерний компонент остается смонтированным в DOM при достижении состояния `exited`. Установка пропса `unmountOnExit` означает, что компонент будет размонтирован, то есть удален из DOM после выхода;
@@ -173,7 +173,7 @@ __Пропсы:__
 
 Чтобы классы корректно применялись в зависимости от состояния компонента, они должны именоваться в определенном стиле. То есть, ему в пропсе `classNames` задается префикс всех будущих классов. 
 
-Образец создания классов:  
+#### Образец создания классов:  
 ```css
 .message-enter {
   opacity: 0;
@@ -194,41 +194,42 @@ __Пропсы:__
 }
 ```
 
-__Как применяются эти классы__  
-В зависимости от типа перехода, значения `state` происходит изменения в классах у отображаемого компонента. 
-При вхождении:
-<img title="Изменение state и классов" alt="Изменение state и классов" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/a3087e94-f052-48f4-a544-e53334103826">
-При выхождении:  
+#### Как применяются эти классы
+В зависимости от типа перехода, значения `state` происходит изменения в классах у отображаемого компонента.  
+
+При вхождении:  
 <img title="Изменение state и классов" alt="Изменение state и классов" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/dae08159-0998-4531-8519-e310181eccab">
 
+При выхождении:  
+<img title="Изменение state и классов" alt="Изменение state и классов" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/a3087e94-f052-48f4-a544-e53334103826">
 
-Наглядный пример применения:  
-```
+#### Наглядный пример применения:  
+```javascript
 const Example = () => {
-const [showButton, setShowButton] = useState(true)
-const [showMessage, setShowMessage] = useState(false)
-const ref = useRef()
+  const [showButton, setShowButton] = useState(true)
+  const [showMessage, setShowMessage] = useState(false)
+  const ref = useRef()
 
-return (
-  <Container className='pt-4'>
-    { showButton && ( <Button onClick={() => setShowMessage(true)}>Показать сообщение</Button> )}
-    
-    <CSSTransition
-      in={ showMessage }
-      timeout={ 300 }
-      classNames='message'
-      onEnter={() => setShowButton(false)} // функции-обработчики
-      onExited={() => setShowButton(true)} // на разные события
-      nodeRef={ref}
-      unmountOnExit // удалить из DOM при завершении перехода
-    >
-      <SomeMessageComponent ref={ref}>
-        <p>Данное сообщение анимируется с помощью переходов</p>
-        <Button onClick={() => setShowMessage(false)}>Закрыть</Button>
-      </SomeMessageComponent>
-    </CSSTransition>
-  </Container>
-)
+  return (
+    <Container className='pt-4'>
+      { showButton && ( <Button onClick={() => setShowMessage(true)}>Показать сообщение</Button> )}
+
+      <CSSTransition
+        in={ showMessage }
+        timeout={ 300 }
+        classNames='message'
+        onEnter={() => setShowButton(false)} // функции-обработчики
+        onExited={() => setShowButton(true)} // на разные события
+        nodeRef={ref}
+        unmountOnExit // удалить из DOM при завершении перехода
+      >
+        <SomeMessageComponent ref={ref}>
+          <p>Данное сообщение анимируется с помощью переходов</p>
+          <Button onClick={() => setShowMessage(false)}>Закрыть</Button>
+        </SomeMessageComponent>
+      </CSSTransition>
+    </Container>
+  )
 }
 ```
 
