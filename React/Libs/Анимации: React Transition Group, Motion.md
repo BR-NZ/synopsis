@@ -27,11 +27,6 @@ import { Transition, CSSTransition, SwitchTransition, TransitionGroup } from 're
 
 <br>
 
-## Составляющие
-Для этих целей у библиотеки есть 4 компонента:
-
-<br>
-
 ## Существует 4 основных состояния `state`:
 
 <img title="Изменение in и состояния" alt="Изменение in и состояния" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/11c5e825-10f7-45b0-b871-4015145c4b47">
@@ -46,9 +41,11 @@ import { Transition, CSSTransition, SwitchTransition, TransitionGroup } from 're
 ## Они вызывают 6 событий:
 <img title="Изменение in и события" alt="Изменение in и события" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/caa3af32-5ace-4f95-b42a-2e6549b057e5">
 
-* `onEnter` – вызывается перед применением статуса `entering`, получает дополнительный параметр `isAppearing` в качестве индикатора вхождения при первоначальном монтировании: 
+* `onEnter` – вызывается перед применением статуса `entering`: 
 ```
 onEnter={(node, isAppearing) => {}}
+
+// получает параметр `isAppearing` как индикатор вхождения первоначальнго монтирования
 // при наличии пропса nodeRef у компонента - node не передается
 ``` 
 * `onEntering` – вызывается после применения статуса `entering`: 
