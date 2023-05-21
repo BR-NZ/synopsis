@@ -32,14 +32,14 @@ import { Transition, CSSTransition, SwitchTransition, TransitionGroup } from 're
 <img title="Изменение in и состояния" alt="Изменение in и состояния" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/11c5e825-10f7-45b0-b871-4015145c4b47">
 
 * `entering` – процесс "вхождения", длиной `timeout` секунд;
-* `entered` – уже "вошел";
+* `entered` – компонент уже "вошел";
 * `exiting` – процесс "выхождения", длиной `timeout` секунд;
-* `exited` – уже "вышел";
+* `exited` – компонент уже "вышел";
 
 <br>
 
 ## Они вызывают 6 событий:
-<img title="Изменение in и события" alt="Изменение in и события" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/caa3af32-5ace-4f95-b42a-2e6549b057e5">
+<img title="Вхождение: изменение in и события" alt="Вхождение: изменение in и события" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/1281c200-5475-4bfc-a712-03bd824caed6">
 
 * `onEnter` – вызывается перед применением статуса `entering`: 
 ```
@@ -56,6 +56,9 @@ onEntering={(node, isAppearing) => {}}
 ```
 onEntered={(node, isAppearing) => {}}
 ```
+
+<img title="Выхождение: изменение in и события" alt="Выхождение: изменение in и события" width="650" src="https://github.com/BR-NZ/synopsis/assets/24506129/caa3af32-5ace-4f95-b42a-2e6549b057e5">
+
 * `onExit` – вызывается перед применением статуса `exiting`: 
 ```
 onExit={(node) => {}}
