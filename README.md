@@ -42,7 +42,7 @@
 ### Маршрутизация:
 24. [Маршрутизация: React Router v5 & v6](/React/Router/React%20Router%3A%20v5%2C%20v6.md)
 ### Библиотеки:
-25. [Анимации: React Transition Group, Motion](/React/Libs/Анимации%3A%20React%20Transition%20Group%2C%20Motion.md)
+25. [Анимации: React Transition Group](/React/Libs/Анимации%3A%20React%20Transition%20Group.md)
 
 <br>
 
