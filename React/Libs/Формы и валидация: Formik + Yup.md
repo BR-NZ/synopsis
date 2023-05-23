@@ -1,6 +1,6 @@
 # Формы и валидация: Formik + Yup
 
-__`Formik`__ — самая популярная библиотека для удобной работы с формами в `React` и `React Native`. Предоставляет валидацию, работу с событиями и собственные компоненты для форм: типа `<input>`, `<select>`, `<radio>` и подобных, но с зашитой дополнительной функциональностью, таким образом, укорачивая код.  
+__`Formik`__ — самая популярная библиотека для удобной работы с формами в `React` и `React Native`. Предоставляет валидацию, работу с событиями и собственные компоненты для форм с зашитой дополнительной функциональностью, таким образом, сокращает и избавляет от дублирования код.
 
 По сути __библиотека реализована на кастомных хуках__, подобное можно реализовать и самому: данные формы в таком решении хранятся в рамках отдельного вызова функции, то есть в "замыкании".
 
@@ -18,7 +18,7 @@ npm i formik
 
 Импортируем компоненты библиотеки в модуль, где их будем использовать:  
 ```javascript
-import { Formik } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 ```
 
 <br>
@@ -76,7 +76,55 @@ const App = () => (
                     <button type="submit" disabled={isSubmitting}>
                         Отправить
                     </button>
-                    // можно использовать стандартные html-элементы форм - но их придется конфигурировать
+                </Form>
+   )}
+   
+  </Formik>
+);
+```
+
+## Готовые компоненты форм
+Библиотека предоставляет собственные компоненты, реализующие привычные нам `HTML-элементы` форм: `Form`, `Field`, `ErrorMessage` и пр. Внутри них зашит весь функционал библиотеки, их применение существенно уменьшает дублирование и объем боилер-кода.
+
+Можно использовать их стандартные прородители `HTML-элементы`: `form`, `input`, `textarea`, `option` и пр. Но в этом случае, стандартные элементы будет необходимо конфигурировать: задавать им обработчики для каждого нужного события и так далее.
+
+### Пример
+Легко понять их преимущества сравнив прошлый участок кода с данным:  
+```javascript
+const App = () => (
+<Formik
+   initialValues={{ email: '', password: '' }}
+   validate={values => {
+               const errors = {};
+               if (!values.email) {
+                    errors.email = 'Поле обязательно к заполнению';
+               } else if (
+                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+               ) {
+                    errors.email = 'Некорректный адрес почты';
+               }
+               return errors;
+   }}
+   onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                }, 400);
+   }}
+>
+   // чтобы прокинуть все свойства и события стандартным элементам
+   // мы вынуждены брать из объекта-аргумента больше функционала
+   {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+                <Form>
+                    // так выглядит дублирование атрибутов каждому элементу
+                    <input type="name" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} />
+                    // а так вывод ошибок
+                    { errors.name && touched.name %% errors.name }
+                    <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                    { errors.email && touched.email && errors.email }
+                    <button type="submit" disabled={isSubmitting}>
+                        Отправить
+                    </button>
                 </Form>
    )}
    
