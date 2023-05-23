@@ -58,6 +58,7 @@
 8. [Сетевые запросы: AJAX, XHttpRequest, Fetch API](/JS/Сетевые%20запросы:%20AJAX,%20XHttpR,%20Fetch%20API.md)
 9. [Event Loop: цикл при исполнении кода](/JS/Event%20Loop%3A%20цикл%20при%20исполнении%20кода.md)
 10. [Храним данные в браузере: LocalStorage, SessionStorage](/JS/Храним%20данные%20в%20браузере%3A%20LocalStorage%2C%20SessionStorage.md)
+11. [RegExp: краткая шпаргалка](/JS/RegExp%3A%20краткая%20шпаргалка.md)
 
 <br>
 
