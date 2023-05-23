@@ -38,18 +38,24 @@ import { Formik } from 'formik'
 ```javascript
 const App = () => (
 <Formik
+   // объект с начальными значениями элементов формы (связь по атрибуту name)
    initialValues={{ email: '', password: '' }}
+   
+   // функция-валидатор вызывается при каждом срабатывании события "onChange"
+   // получает текущее значение элемента
    validate={values => {
                const errors = {};
                if (!values.email) {
-                    errors.email = 'Required';
+                    errors.email = 'Поле обязательно к заполнению';
                } else if (
                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                ) {
-                    errors.email = 'Invalid email address';
+                    errors.email = 'Некорректный адрес почты';
                }
                return errors;
    }}
+   
+   // вешаем колбек на события "submit" формы
    onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
@@ -57,16 +63,20 @@ const App = () => (
                 }, 400);
    }}
 >
-  
+
+   // рендер-функция конфигурирует и отображает обычную форму
+   // получает много полезных методов и значений
    {({ isSubmitting }) => (
                 <Form>
+                    // используем кастомные элементы библиотеки
                     <Field type="email" name="email" />
                     <ErrorMessage name="email" component="div" />
                     <Field type="password" name="password" />
                     <ErrorMessage name="password" component="div" />
                     <button type="submit" disabled={isSubmitting}>
-                     Отправить
+                        Отправить
                     </button>
+                    // можно использовать стандартные html-элементы форм - но их придется конфигурировать
                 </Form>
    )}
    
