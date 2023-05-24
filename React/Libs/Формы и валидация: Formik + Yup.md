@@ -42,6 +42,7 @@ import { object, string, number, date, InferType } from 'yup'
 Библиотека предоставляет собственные компоненты, реализующие привычные нам `HTML-элементы` форм: `Form`, `Field`, `ErrorMessage` и пр. Внутри них зашит весь функционал библиотеки, их применение существенно уменьшает дублирование и объем боилер-кода. __Они используют контекст `<Formik>` компонента__, чтобы незаметно получать и использовать внутри себя все события и объекты библиотеки, таким образом, передавать их явно в пропсы не нужно.
 
 Компонент `Field` представляет наиболее общий компонент библиотеки, который заменяет собой стандартные элементы `input`, `textarea`, `select`, `checkbox`.
+Компонент `ErrorMessage`
 
 Можно использовать их стандартные прородители `HTML-элементы`: `form`, `input`, `textarea`, `select` и пр. Но в этом случае, стандартные элементы будет необходимо конфигурировать: задавать им обработчики для каждого нужного события и так далее (так как они не могут использовать контекст).
 
@@ -273,13 +274,95 @@ const Form = () => {
             text: '',
             terms: false
         },
-        // специальное свойство Formik для валидации через схему данных
-        // Yup предоставит схему и будет проверять через нее объект { values } с текущими значениями формы
-        // Yup также будет заполнять объект { errors } с ошибками для каждого элемента формы (в случае несоответствия его данных со схемой)
         validationSchema: Yup.object({
             name: Yup.string().min(2, 'Минимум 2 символа!').required('Обязательное поле!'), 
             email: Yup.string().email('Некорректный е-маил!').required('Обязательное поле!'),
+            amount: Yup.number().min(5, 'Не менее 5').required('Обязательное поле!'),
+            currency: Yup.string().required('Выберите валюту!'),
+            text: Yup.string().min(10, 'Не менее 10 символов'),
+            terms: Yup.boolean().required('Необходимо согласие!').oneOf([true], 'Необходимо согласие!'),
         }),
+        // на вход функция обработчик получает объект values со структурой подобной initialValues
+        // но храняющий их текущие значения value
         onSubmit: values => console.log(JSON.stringify(values, null, 2))
     });
+
+    return (
+        <form className="form" onSubmit={formik.handleSubmit}>
+            <h2>Отправить пожертвование</h2>
+            <label htmlFor="name">Ваше имя</label>
+            <input
+                id="name"
+                name="name"
+                type="text"
+                // значение каждого элемента отслеживается по объект values
+                // так реализуется двустороннее связывание у контролируемых элементов
+                value={formik.values.name}
+                // при изменении value элемента будет вызвана функция-обработчик handleChange
+                // она будет смотреть с какими name изменился элемент и менять его значение в объекте values
+                onChange={formik.handleChange}
+                // onBlur сработает при потере элементом фокуса - и специальный объект touched по name ключу присвоит true
+                // то есть в touched объекте поля помечаются как использованные
+                // это нужно чтобы не выдывать предупреждений по неиспользованному пользователем полю
+                onBlur={formik.handleBlur}
+            />
+            { formik.errors.name && formik.touched.name ? <div className="error">{ formik.errors.name }</div> : null }
+            <label htmlFor="email">Ваша почта</label>
+            <input
+                id="email"
+                name="email"
+                type="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
+            { formik.errors.email && formik.touched.email ? <div className="error">{ formik.errors.email }</div> : null }
+            <label htmlFor="amount">Количество</label>
+            <input
+                id="amount"
+                name="amount"
+                type="number"
+                value={formik.values.amount}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
+            { formik.errors.amount && formik.touched.amount ? <div className="error">{ formik.errors.amount }</div> : null }
+            <label htmlFor="currency">Валюта</label>
+            <select
+                // селект будет получать value из такого же атрибута у выбранного option
+                id="currency"
+                name="currency"
+                value={formik.values.currency}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}>
+                    <option value="">Выберите валюту</option>
+                    <option value="USD">USD</option>
+                    <option value="UAH">UAH</option>
+                    <option value="RUB">RUB</option>
+            </select>
+            { formik.errors.currency && formik.touched.currency ? <div className="error">{ formik.errors.currency }</div> : null }
+            <label htmlFor="text">Ваше сообщение</label>
+            <textarea 
+                id="text"
+                name="text" 
+                value={formik.values.text}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
+            { formik.errors.text && formik.touched.text ? <div className="error">{ formik.errors.text }</div> : null }
+            <label className="checkbox">
+                <input 
+                    name="terms" 
+                    type="checkbox" 
+                    value={formik.values.terms}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                Соглашаетесь с политикой конфиденциальности?
+            </label>
+            { formik.errors.terms && formik.touched.terms ? <div className="error">{ formik.errors.terms }</div> : null }
+            <button type="submit">Отправить</button>
+        </form>
+    )
+}
 ```
