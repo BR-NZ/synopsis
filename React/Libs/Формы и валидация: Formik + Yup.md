@@ -234,13 +234,18 @@ const Form = () => {
 ## Валидация с помощью `Yup`
 * __`Yup`__ — библиотека для удобной валидации данных, может применяться отдельно от `Formik` или `React`. Проще говоря, это построитель `схемы` для анализа и проверки значений во время выполнения. Схема это тот шаблон, по которому данные будут валидированы, она поддерживает многоуровневую проверку и преобразование значений.
 
-`Formik` также поддерживает получение пользовательских схем, для этого за место функции `validate` в ее компонент передается пропс `validationSchema` со специальным `yup-объектом` (для хука одноименное свойство объекта).
+`Formik` также поддерживает получение и валидацию данных на основе пользовательских схем, для этого в ее компонент передается пропс `validationSchema` со специальным `yup-объектом` (для хука в одноименное свойство объекта конфигурации).
 
-`Yup-схема` представляет собой объект, с `name-атрибутами` полей формы на месте свойств. Значения объекта-схемы заполняются особым способом: 
-1. Сначала берем объект библиотеки `Yup` и вызываем на нем __метод типа данных__: `string()`, `number()`, `boolean()` и тд;
-2. Далее на выбранном типе данных, который мы ожидаем у формы, по "chaining-принципу" можем вызывать различные методы проверок и преобразований;
-3. Методы проверок и преобразований могут быть следующих типов: `mixed` (подходят для всех типов данных) и специализированные (типа `string`, `number`, `date` итд.);
-4. То есть если ранее мы вызывали `string()` - можем вызывать методы из списка `string` или `mixed`, но не `number`;
+Валидацию через самописную функцию `validate` можно совместить с валидацией через схема, если нужна какая-либо ее кастомная логика — все они будут изменять объект `{errors}`. 
+
+`Yup-схема` представляет собой объект, где свойства это `name-атрибуты` элементов формы, а значения состоят из цепочки методов-проверок: 
+1. На объекте `Yup` вызываем метод, который определяет __тип данных элемента формы__: `string()`, `number()`, `boolean()` и тд;
+2. Далее по "chaining-принципу" на выбранном типе данных можем повешать различные методы проверок и преобразований;
+
+Методы могут быть следующих типов: 
+*  `string`, `number`, `date` — специализированные методы под каждый тип данных;
+*  `mixed` — подходят для всех типов данных;
+*  То есть вызывая `string()`, на него можно навешать методы из списка `string` или `mixed` (но не `number`);
 
 ### Пример создания схемы:
 ```javascript
@@ -270,46 +275,25 @@ userSchema.isValid( {id: 1} ) // -> false! names.first is required
 const Form = () => {
     const formik = useFormik({
         initialValues: {
-            name: '',
             email: '',
-            amount: 0,
             currency: 'USD',
             text: '',
             terms: false
         },
+        // для валидации схемой "Formik" ожидает свойство "validationSchema" (по аналогии с validate)
         validationSchema: Yup.object({
-            name: Yup.string().min(2, 'Минимум 2 символа!').required('Обязательное поле!'), 
             email: Yup.string().email('Некорректный е-маил!').required('Обязательное поле!'),
-            amount: Yup.number().min(5, 'Не менее 5').required('Обязательное поле!'),
             currency: Yup.string().required('Выберите валюту!'),
             text: Yup.string().min(10, 'Не менее 10 символов'),
             terms: Yup.boolean().required('Необходимо согласие!').oneOf([true], 'Необходимо согласие!'),
         }),
-        // на вход функция обработчик получает объект values со структурой подобной initialValues
-        // но храняющий их текущие значения value
         onSubmit: values => console.log(JSON.stringify(values, null, 2))
     });
 
     return (
+        // рендер при валидации схемой никак не отличается от обычного
         <form className="form" onSubmit={formik.handleSubmit}>
             <h2>Отправить пожертвование</h2>
-            <label htmlFor="name">Ваше имя</label>
-            <input
-                id="name"
-                name="name"
-                type="text"
-                // значение каждого элемента отслеживается по объект values
-                // так реализуется двустороннее связывание у контролируемых элементов
-                value={formik.values.name}
-                // при изменении value элемента будет вызвана функция-обработчик handleChange
-                // она будет смотреть с какими name изменился элемент и менять его значение в объекте values
-                onChange={formik.handleChange}
-                // onBlur сработает при потере элементом фокуса - и специальный объект touched по name ключу присвоит true
-                // то есть в touched объекте поля помечаются как использованные
-                // это нужно чтобы не выдывать предупреждений по неиспользованному пользователем полю
-                onBlur={formik.handleBlur}
-            />
-            { formik.errors.name && formik.touched.name ? <div className="error">{ formik.errors.name }</div> : null }
             <label htmlFor="email">Ваша почта</label>
             <input
                 id="email"
@@ -320,19 +304,8 @@ const Form = () => {
                 onBlur={formik.handleBlur}
             />
             { formik.errors.email && formik.touched.email ? <div className="error">{ formik.errors.email }</div> : null }
-            <label htmlFor="amount">Количество</label>
-            <input
-                id="amount"
-                name="amount"
-                type="number"
-                value={formik.values.amount}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-            />
-            { formik.errors.amount && formik.touched.amount ? <div className="error">{ formik.errors.amount }</div> : null }
             <label htmlFor="currency">Валюта</label>
-            <select
-                // селект будет получать value из такого же атрибута у выбранного option
+            <select // селект просто получает value из value выбранного option
                 id="currency"
                 name="currency"
                 value={formik.values.currency}
