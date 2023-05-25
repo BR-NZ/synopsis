@@ -19,8 +19,17 @@ npm i yup
 
 Импортируем компоненты библиотек в модуль, где их будем использовать:  
 ```javascript
+// вытаскиваем готовые компоненты
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+
+// если хотим повозиться с хуком
+import { useFormik } from 'formik'
+
+// вытаскиваем все типы из Yup
 import { object, string, number, date, InferType } from 'yup'
+
+// или кладем все в общий объект
+import * as Yup from 'yup'
 ```
 
 ### Действующие лица: 
