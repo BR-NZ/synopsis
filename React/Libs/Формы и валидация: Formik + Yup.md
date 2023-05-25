@@ -281,6 +281,7 @@ const Form = () => {
             terms: false
         },
         // для валидации схемой "Formik" ожидает свойство "validationSchema" (по аналогии с validate)
+        // как раз тут за дело берется Yup с проверками и преобразованиями по цепочкам
         validationSchema: Yup.object({
             email: Yup.string().email('Некорректный е-маил!').required('Обязательное поле!'),
             currency: Yup.string().required('Выберите валюту!'),
