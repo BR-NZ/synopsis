@@ -343,9 +343,71 @@ const Form = () => {
 ```
 ### Пример `<Formik>` с готовыми компонентами + `Yup-валидацией`:
 ```javascript
-const Form = () => {
-   return(
-      
-   )
+const CustomForm = () => {
+    return (
+        <Formik 
+            initialValues={{
+                email: '',
+                amount: 0,
+                currency: 'USD',
+                text: '',
+                terms: false
+            }}
+            validationSchema={Yup.object({
+                email: Yup.string().email('Некорректный е-маил!').required('Обязательное поле!'),
+                amount: Yup.number().min(5, 'Не менее 5').required('Обязательное поле!'),
+                currency: Yup.string().required('Выберите валюту!'),
+                text: Yup.string().min(10, 'Не менее 10 символов'),
+                terms: Yup.boolean().required('Необходимо согласие!').oneOf([true], 'Необходимо согласие!'),
+            })}
+            onSubmit={ values => console.log(JSON.stringify(values, null, 2)) }
+            >
+            <Form className="form">
+                <h2>Отправить пожертвование</h2>
+                <label htmlFor="email">Ваша почта</label>
+                <Field
+                    id="email"
+                    name="email"
+                    type="email"
+                />
+                <ErrorMessage name="email" className="error" component="div" />
+                <label htmlFor="amount">Количество</label>
+                <Field
+                    id="amount"
+                    name="amount"
+                    type="number"
+                />
+                <ErrorMessage name="amount" className="error" component="div" />
+                <label htmlFor="currency">Валюта</label>
+                <Field
+                    // селект будет получать value из такого же атрибута у выбранного option
+                    id="currency"
+                    name="currency"
+                    as="select">
+                        <option value="">Выберите валюту</option>
+                        <option value="USD">USD</option>
+                        <option value="UAH">UAH</option>
+                        <option value="RUB">RUB</option>
+                </Field>
+                <ErrorMessage name="currency" className="error" component="div" />
+                <label htmlFor="text">Ваше сообщение</label>
+                <Field 
+                    id="text"
+                    name="text"
+                    as="textarea"
+                />
+                <ErrorMessage name="text" className="error" component="div" />
+                <label className="checkbox">
+                    <Field 
+                        name="terms" 
+                        type="checkbox" 
+                    />
+                    Соглашаетесь с политикой конфиденциальности?
+                </label>
+                <ErrorMessage name="terms" className="error" component="div" />
+                <button type="submit">Отправить</button>
+            </Form>
+        </Formik>
+    )
 }
 ```
