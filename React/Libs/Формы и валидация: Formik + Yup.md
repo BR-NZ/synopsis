@@ -52,59 +52,59 @@ import { object, string, number, date, InferType } from 'yup'
 <br>
 
 ## 1. Используя компонент `<Formik>`
-> __`<Formik>`__ — главный контролирующий компонент, весь функционал библиотеки находится в его пределах. Он должен возвращать `<form>` через рендер-функцию с множеством аргументов для работы внутри нее. Он связывается с элементами формы по их `name`-атрибуту.
+> __`<Formik>`__ — главный контролирующий компонент, является прямым аналогом хука `useFormik()`, выполненным в компонентной версии. Все что хук получал из объект-конфигуратора, компонент получает из пропсов при вызове. В своей реализации он и использует этот хук, конфигурируя его из полученных пропсов.
+
+Внутри тэгов `<Formik>` может содержать `<form>`/`<Form>` и ее дочерние компоненты (если не нужно выдергивать значений из контекста) или возвращать их в рендер-функции (если значения из контекста нужны, их можно получить в аргументе функции).
 
 ### Пример `<Formik>` и "готовых" компонентов форм
 Лучше всего понять принцип можно на общем примере:  
 ```javascript
 const App = () => (
-<Formik
-   // объект с начальными значениями элементов формы (связь по атрибуту name)
-   initialValues={{ email: '', password: '' }}
-   
-   // функция-валидатор вызывается при каждом срабатывании события "onChange"
-   // получает текущее значение элемента
-   validate={values => {
-               const errors = {};
-               if (!values.email) {
-                    errors.email = 'Поле обязательно к заполнению';
-               } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-               ) {
-                    errors.email = 'Некорректный адрес почты';
-               }
-               return errors;
-   }}
-   
-   // вешаем колбек на события "submit" формы
-   onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-   }}
->
+   <Formik
+      // объект с начальными значениями элементов формы (связь по атрибуту name)
+      initialValues={{ email: '', password: '' }}
 
-   // рендер-функция конфигурирует и отображает обычную форму
-   // получает много полезных методов и значений
-   {({ isSubmitting }) => (
-                <Form>
-                    // используем кастомные элементы библиотеки
-                    <Field type="email" name="email" />
-                    <ErrorMessage name="email" component="div" />
-                    <Field type="password" name="password" />
-                    <ErrorMessage name="password" component="div" />
-                    <button type="submit" disabled={isSubmitting}>
-                        Отправить
-                    </button>
-                </Form>
-   )}
-   
+      // функция-валидатор вызывается при каждом срабатывании события "onChange"
+      // получает текущее значение элемента
+      validate={values => {
+                  const errors = {};
+                  if (!values.email) {
+                       errors.email = 'Поле обязательно к заполнению';
+                  } else if (
+                       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                  ) {
+                       errors.email = 'Некорректный адрес почты';
+                  }
+                  return errors;
+      }}
+
+      // вешаем колбек на события "submit" формы
+      onSubmit={(values, { setSubmitting }) => {
+                   setTimeout(() => {
+                       alert(JSON.stringify(values, null, 2));
+                       setSubmitting(false);
+                   }, 400);
+      }}
+  >
+      // рендер-функция конфигурирует и отображает обычную форму
+      // получает много полезных методов и значений
+      {({ isSubmitting }) => (
+                   <Form>
+                       // используем кастомные элементы библиотеки
+                       <Field type="email" name="email" />
+                       <ErrorMessage name="email" component="div" />
+                       <Field type="password" name="password" />
+                       <ErrorMessage name="password" component="div" />
+                       <button type="submit" disabled={isSubmitting}>
+                           Отправить
+                       </button>
+                   </Form>
+      )} 
   </Formik>
 );
 ```
 
-### Пример `<Formik>` и "стандартных" элементов форм
+### Пример `<Formik>` и "стандартных" элементов
 Легко понять их преимущества сравнив прошлый участок кода с данным:  
 ```javascript
 const App = () => (
@@ -153,7 +153,7 @@ const App = () => (
 ## 2. Используя хук `useFormik()`
 > __`useFormik()`__ — главный хук библиотеки, который и использует под капотом сам компонент `<Formik>`, получает на вход объект-конфигуратор с спец-объектами и обработчиками событий библиотеки. Вызов хука возвращает объект с другими спец-объектами и обработчиками событий, которые уже можно применять в рендере самой формы.
 
-### Пример `useFormik()` и "стандартных" компонентов форм
+### Пример `useFormik()` и "стандартных" элементов
 Лучше всего понять принцип можно на общем примере:  
 ```javascript
 const validate = values => { /* реализация уже приводилась выше */ }
@@ -270,7 +270,7 @@ userSchema.default() // -> {id: '1', names: {first: 'Alex'}}
 userSchema.isValid( {id: 1} ) // -> false! names.first is required
 ```
 
-### Пример c хуком`useFormik()` и `Yup-валидацией`:
+### Пример `useFormik()` с "стандартных" элементов + `Yup-валидацией`:
 ```javascript
 const Form = () => {
     const formik = useFormik({
@@ -321,9 +321,8 @@ const Form = () => {
             <textarea 
                 id="text"
                 name="text" 
-                value={formik.values.text}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // позволяет сократить повторяющийся код установки событий и значений из библиотеки
+                { ...formik.getFieldProps('text') }
             />
             { formik.errors.text && formik.touched.text ? <div className="error">{ formik.errors.text }</div> : null }
             <label className="checkbox">
@@ -340,5 +339,13 @@ const Form = () => {
             <button type="submit">Отправить</button>
         </form>
     )
+}
+```
+### Пример `<Formik>` с готовыми компонентами + `Yup-валидацией`:
+```javascript
+const Form = () => {
+   return(
+      
+   )
 }
 ```
