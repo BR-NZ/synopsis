@@ -51,7 +51,7 @@ const App = () => {
 ```
 
 Будет сформирован в html-страницу с таким `<head>`:  
-```
+```html
 <head>
     <title>Здесь я подставлюсь в title-тег!</title>
     <link rel="canonical" href="http://mysite.com/example" />
