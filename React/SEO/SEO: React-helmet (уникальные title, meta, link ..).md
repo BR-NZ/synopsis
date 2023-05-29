@@ -70,5 +70,7 @@ const App = () => {
 
 <br>
 
-## Серверное использование
+## Подробнее
+Про серверное использование и прочие детали:  
 __[Подробнее в документации на Github](https://github.com/nfl/react-helmet)__
+__[Хорошая статья о React-helmet/snap](https://habr.com/ru/companies/rshb/articles/529636/)__
