@@ -42,10 +42,13 @@
 ### Маршрутизация:
 24. [Маршрутизация: React Router v5 & v6](/React/Router/React%20Router%3A%20v5%2C%20v6.md)
 ### Анимации:
-25. [Анимации: React Transition Group](/React/Libs/Анимации%3A%20React%20Transition%20Group.md)
-26. [Анимации: React Transition Group + React Router](/React/Libs/Анимации%3A%20React%20Transition%20Group%20%2B%20React%20Router.md)
+25. [Анимации: React Transition Group](/React/Animation/Анимации%3A%20React%20Transition%20Group.md)
+26. [Анимации: React Transition Group + React Router](/React/Animation/Анимации%3A%20React%20Transition%20Group%20%2B%20React%20Router.md)
 ### Формы и валидация:
-27. [Формы и валидация: Formik + Yup](/React/Libs/Формы%20и%20валидация%3A%20Formik%20%2B%20Yup.md)
+27. [Формы и валидация: Formik + Yup](/React/Forms/Формы%20и%20валидация%3A%20Formik%20%2B%20Yup.md)
+### SEO
+28. [SEO: React-helmet (уникальные title, meta, link ..)](/React/SEO/)
+29. [SEO: React-snap (кэширование в html-страницу)](/React/SEO/)
 
 <br>
 
