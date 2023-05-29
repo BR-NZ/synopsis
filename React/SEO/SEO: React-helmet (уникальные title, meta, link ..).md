@@ -31,8 +31,8 @@ npm i react-helmet
 <br>
 
 ## Пример использования
-
-```
+К примеру, такой React-компонент:  
+```javascript
 import {Helmet} from "react-helmet";
 
 const App = () => {
@@ -48,6 +48,12 @@ const App = () => {
     </div>
   )
 }
+```
+
+Будет сформирован в такую html-страницу:  
+
+```
+
 ```
 
 <br>
