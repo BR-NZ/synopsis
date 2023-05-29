@@ -36,11 +36,11 @@ npm i react-helmet
 import {Helmet} from "react-helmet";
 
 const App = () => {
-  const title = 'Я подставлюсь в title-тег!'
+  const title = 'я подставлюсь в title-тег!'
   return (
     <div className="application">
       <Helmet>
-          <title>My {title}</title>
+          <title>Здесь {title}</title>
           <meta charSet="utf-8" />
           <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
@@ -50,11 +50,15 @@ const App = () => {
 }
 ```
 
-Будет сформирован в такую html-страницу:  
-
+Будет сформирован в html-страницу с таким `<head>`:  
+```
+<head>
+    <title>Здесь я подставлюсь в title-тег!</title>
+    <link rel="canonical" href="http://mysite.com/example" />
+</head>
 ```
 
-```
+В более старой версии библиотеки `React-helmet v5` компонент `<Helmet>` конфигурировался через пропсы.
 
 <br>
 
