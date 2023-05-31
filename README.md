@@ -50,7 +50,7 @@
 28. [SEO: React-helmet (уникальные title, meta, link ..)](/React/SEO/SEO%3A%20React-helmet%20(%D1%83%D0%BD%D0%B8%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20title%2C%20meta%2C%20link%20..).md)
 29. [SEO: React-snap (кэширование в html-страницу)](/React/SEO/)
 ### Работа с состояниями:
-30. [FMS: Автомат конечных состояний (Finite-State Machine)](/React/)
+30. [FMS: Автомат конечных состояний (Finite-State Machine)](/React/State/FMS%3A%20Автомат%20конечных%20состояний%20(Finite-State%20Machine).md)
 
 <br>
 
