@@ -91,6 +91,117 @@ state: {
 }
 ```
 
+## Пример реализации:
+```javascript
+class InputStateMachine extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.goToState = this.goToState.bind(this);
+    this.save = this.save.bind(this);
+    this.state = {
+      name: 'display',
+      machine: this.generateState('display', props.initialValue),
+    };
+  }
+  
+  generateState(stateName, stateParam) {
+    const previousState = this.state ? {...this.state.machine} : {};
+    switch (stateName) {
+      case 'display':
+        return {
+          processing: false,
+          error: null,
+          value: stateParam || previousState.value,
+          editing: false,
+          editValue: null,
+        };
+      case 'saving':
+        return {
+          processing: true,
+          error: null, // Сброс предыдущей ошибки сохранения
+          value: previousState.value,
+          editing: true, // Отображение окна редактирования в процессе сохранения
+          editValue: previousState.editValue,
+        };
+      case 'edit':
+        return {
+          processing: false,
+          error: null,
+          value: previousState.value,
+          editing: true,
+          editValue: stateParam,
+        };
+      case 'save_error':
+        return {
+          processing: false,
+          error: stateParam,
+          value: previousState.value,
+          editing: true, // Оставляем окно редактирования открытым
+          editValue: previousState.editValue,
+        };
+      case 'loading': // Идентично состоянию по умолчанию
+      default:
+        return {
+          processing: true,
+          error: null,
+          value: null,
+          editing: false,
+          editValue: null,
+        };
+    }
+  }
+  
+  goToState(stateName, stateParam) {
+    this.setState({
+      name: stateName,
+      machine: this.generateState(stateName, stateParam),
+    });
+  }
+  handleSubmit(e) {
+    this.goToState('edit', e.target.value);
+  }
+  save(valueToSave) {
+    this.goToState('saving');
+    // Имитируем сохранение данных...
+    setTimeout(() => this.goToState('display', valueToSave), 2000);
+  }
+  
+  render() {
+    const {processing, error, value, editing, editValue} = this.state.machine;
+    if (processing) {
+      return <p>Processing ...</p>;
+    } else if (editing) {
+      return (
+        <div>
+          <input
+            type="text"
+            onChange={this.handleSubmit}
+            value={editValue || value}
+          />
+          {error && <p>Error: {error}</p>}
+          <button onClick={() => this.save(editValue)}>Save</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>{value}</p>
+          <button onClick={() => this.goToState('edit', value)}>Edit</button>
+        </div>
+      );
+    }
+  }
+}
+```
+
+## Общие советы по реализации
+При работе с конечными автоматами приходится писать немного шаблонного кода:  
+1. Создайте утилитарный метод, который будет задавать название состояния и его содержимое. Позволяет легко получить текущее состояние и упрощает отладку компонента.
+2. Сохраняйте метод, генерирующий состояние компонента, чистым и используйте его для генерации изначального состояния в конструкторе.
+3. Используйте при деструктуризации `this.state.machine` вместо `this.state` в вашем методе `render()`.
+4. Состоянию иногда необходимы параметры. Как правило, если ваше состояние требует более 3 параметров, вам не стоит использовать конечные автоматы в этом компоненте.
+
 __Отметим:__
 * Да, описание состояний несколько разбухло;
 * Легко понять состояние системы на каждом этапе (значении состояния);
@@ -100,7 +211,7 @@ __Отметим:__
 <br>
 
 ## Выводы
-Использую новый подход при работе с состоянием, наше приложение должно оставаться гибким и обрабатывать непредвиденные сложности:
+Используя новый подход при работе с состоянием, наше приложение должно оставаться гибким и обрабатывать непредвиденные сложности:
 * [x] __Конечные автоматы__ — хороший способ улучшения читаемости ваших компонентов и процесса разработки этих компонентов от дизайна до поддержки;
 * [ ] При использовании "конечных автоматов" увеличивается количество "шаблонного" кода для работы с сотоянием;
 * [ ] __Не стоит использовать__ этот подход на простых компонентах, где и при стандартном подходе сложностей не возникало, это будет лишним усложнением;
