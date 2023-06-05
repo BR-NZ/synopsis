@@ -227,8 +227,15 @@ __Отметим:__
 
 <br>
 
+## Библиотеки: 
+* [X-state](https://xstate.js.org/docs/recipes/react.html)
+* [Robot](https://thisrobot.life/)
+* [Machina.js](http://machina-js.org/)
+
+<br>
+
 ## Подробнее: 
-* __[Машины состояний и разработка веб-приложений](https://habr.com/ru/companies/ruvds/articles/346908/)__
+* __[Машины состояний: простой пример реализации](https://habr.com/ru/companies/ruvds/articles/346908/)__
 * __[Хорошая статья с примерами](https://medium.com/devschacht/jean-paul-delimat-boost-your-react-with-state-machines-8a22885dc348)__
-* __[Как в React избавиться от сложности в управлении состоянием](https://habr.com/ru/companies/nix/articles/354106/)__
+* __[Как в React упростить управление состоянием](https://habr.com/ru/companies/nix/articles/354106/)__
 * __[Конечный автомат: теория и реализация](https://tproger.ru/translations/finite-state-machines-theory-and-implementation/)__
