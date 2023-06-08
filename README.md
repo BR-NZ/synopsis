@@ -51,6 +51,8 @@
 29. [SEO: React-snap (кэширование в html-страницу)](/React/SEO/)
 ### Работа с состояниями:
 30. [FMS: Автомат конечных состояний (Finite-State Machine)](/React/State/FMS%3A%20Автомат%20конечных%20состояний%20(Finite-State%20Machine).md)
+### Redux:
+31. [Основные принципы работы](/React/Redux/)
 
 <br>
 
