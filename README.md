@@ -52,7 +52,7 @@
 ### Работа с состояниями:
 30. [FMS: Автомат конечных состояний (Finite-State Machine)](/React/State/FMS%3A%20Автомат%20конечных%20состояний%20(Finite-State%20Machine).md)
 ### Redux:
-31. [Основные принципы работы](/React/Redux/Redux:%20Основные%20принципы%20работы.md)
+31. [Основные принципы работы](/React/Redux/Redux:%20принцип%20работы,%20пример%20использования.md)
 32. [Actions: actionCreators, bindActionCreators.md](/React/Redux/Actions%3A%20actionCreators%2C%20bindActionCreators.md)
 
 <br>
