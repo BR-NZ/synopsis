@@ -51,6 +51,8 @@ const onClick = () => dispatcher( inc() )
 ## Функции-привязки `bindActionCreators`:
 В `redux` приложениях существует большая вложенность вызовов функций при работе с состоянием. Поэтому принято использовать различные функции-обертки.
 
+<br>
+
 ### Функция-привязки `dispatcher` к `action`
 ```javascript
 // функция-обертка вызывает диспетчер с action или actionCreator
@@ -63,6 +65,8 @@ const onClick = () => incDispatch()
 Разумеется это не всегда удобно, ведь в приложении может быть множество действий и  не хотелось бы под каждое создавать подобную функцию.
 
 __`bindActionCreators`__ — вспомогательные функции, оборачивают внутри себя вызов `dispatcher` и передачу ему какого-либо `action` или `actionCreator`. Эти вспомогательные функции-обертки также служат для оптимизации, но на уровень выше `actionCreators`.
+
+<br>
 
 ### Собственная реализация `bindActionCreator`
 ```javascript
@@ -78,6 +82,8 @@ const bindActionCreator = (creator, dispatch) => (
 
 const incDispatch = bindActionCreator(inc(9), dispatch)
 ```
+
+<br>
 
 ### Функция привязки `bindActionCreators` из пакета `redux`
 Паттерн из примера выше стал настолько распространенным, что в пакет `redux` включили готовую функцию привязки.
