@@ -55,7 +55,7 @@ const onClick = () => dispatch({type: "INCREMENT"})
 <span>Текущее значение: { getState() }</span>
 
 // 6. subscribe - выполняет полученный колбек при изменении state
-subscribe( () => console.log(state) )
+subscribe( () => console.log( getState() ) )
 ```
 
 Но, как правило, в реальных проектах actions и reducer разбиваются на отдельные модули.
