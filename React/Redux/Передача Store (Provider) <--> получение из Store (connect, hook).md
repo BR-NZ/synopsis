@@ -85,3 +85,7 @@ export default connect(mapStateToProps, actions)(Counter)
 * Может работать с классовыми компонентами;
 * Лучше поддается тестированию;
 * Лучшая производительность; 
+
+<br>
+
+## Получаем через [`useSelector()`]()
