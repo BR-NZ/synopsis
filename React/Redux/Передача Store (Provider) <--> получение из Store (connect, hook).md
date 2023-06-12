@@ -1,3 +1,3 @@
-# Передача store - получение из store
+# Передача Store `<Provider>` <--> получение из Store
 
 test
