@@ -54,6 +54,7 @@
 ### Redux:
 31. [Основные принципы работы](/React/Redux/Redux:%20принцип%20работы,%20пример%20использования.md)
 32. [Actions: actionCreators, bindActionCreators.md](/React/Redux/Actions%3A%20actionCreators%2C%20bindActionCreators.md)
+33. [Передача Store (Provider) <--> получение из Store (connect, hook)](/React/Redux/Передача%20Store%20(Provider)%20<-->%20получение%20из%20Store%20(connect%2C%20hook).md)
 
 <br>
 
