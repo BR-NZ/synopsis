@@ -47,7 +47,7 @@ const reducer = (state, action) => { /* ...реализуем свою логи�
 const store = createStore( reducer )
 
 // 3. Вытаскиваем из него полезные методы, с которыми будем работать
-const { dispatch, subscribe, getState } = createStore()
+const { dispatch, subscribe, getState } = store
 
 // 4. dispatch - будет передавать действие в reducer
 const onClick = () => dispatch({type: "INCREMENT"})
