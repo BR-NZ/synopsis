@@ -133,4 +133,5 @@ const {inc, dec} = bindActionCreators({
 4. Что в свою очередь можно упростить до:
 ```javascript
 const {inc, dec} = bindActionCreators(actions, dispatch)
+// Название должны совпадать с именами функций-креаторов из модуля action
 ```
