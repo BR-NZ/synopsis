@@ -132,5 +132,5 @@ const {inc, dec} = bindActionCreators({
 ```
 4. Что в свою очередь можно упростить до:
 ```javascript
-const {incDispatch, decDispatch} = bindActionCreators(actions, dispatch)
+const {inc, dec} = bindActionCreators(actions, dispatch)
 ```
